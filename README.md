@@ -1,2 +1,2 @@
-# PROGRXN
-Code repository for PROGRXN: Coming soon
+# PROGRxN
+Code repository for PROGRxN: Coming soon
