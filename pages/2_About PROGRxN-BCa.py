@@ -1,12 +1,6 @@
 import pandas as pd
 import numpy as np
 import streamlit as st
-import PIL.Image
-from streamlit_carousel import carousel
-#import joblib
-#from pathlib import Path
-#from google_drive_downloader import GoogleDriveDownloader as gdd
-#from persist import persist, load_widget_state
 
 st.set_page_config(page_title="PROGRxN-BCa: PROGression Risk assessment in Non-muscle invasive Bladder Cancer",
                    page_icon="https://bladdercancercanada.org/wp-content/uploads/2017/03/bcc-fav-icon.png",
