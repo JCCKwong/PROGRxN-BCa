@@ -20,7 +20,7 @@ st.sidebar.image('https://uofturology.ca/wp-content/themes/uofturology22/img/Uof
 
 @st.cache_data()
 def load_model():
-    model = joblib.load(r'model\PROGRxN-BCa_model.joblib')
+    model = joblib.load(r'model\model.gz')
     return model
 
 model = load_model()
