@@ -2,13 +2,9 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 import matplotlib.pyplot as plt
-#import PIL.Image
 from lifelines import KaplanMeierFitter
 import joblib
 from sksurv.ensemble import RandomSurvivalForest
-#from pathlib import Path
-#from google_drive_downloader import GoogleDriveDownloader as gdd
-#from persist import persist, load_widget_state
 
 st.set_page_config(page_title="PROGRxN-BCa: PROGression Risk assessment in Non-muscle invasive Bladder Cancer",
                    page_icon="https://bladdercancercanada.org/wp-content/uploads/2017/03/bcc-fav-icon.png",
@@ -33,15 +29,13 @@ st.markdown(
 
 @st.cache_data()
 def load_model():
-    #uhnthp = pd.read_excel(r'models\PROGRxN-BCa training set (Nov 28, 2023).xlsx')
-    #cbcis = pd.read_excel(r'models\PROGRxN-BCa CBCIS conservative set (Nov 28, 2023).xlsx')
-    #data = pd.concat([uhnthp, cbcis], ignore_index=True)
     model = joblib.load(r'model\PROGRxN-BCa_model.joblib')
     return model
 
 model = load_model()
 
 col1, col2 = st.columns([1, 1])
+
 # Enter information column
 col1.header("Enter your information", divider='gray')
 
@@ -184,104 +178,3 @@ if submit:
         col2.write('You are considered *intermediate-risk* based on the [International Bladder Cancer Group]'
                    '(https://doi.org/10.1016/j.euo.2022.05.005) consensus definition for intermediate-risk non-muscle '
                    f'invasive bladder cancer, and in the **{risk_tertile} tertile** based on PROGRxN-BCa.''')
-
-    #query = data[(data['Sex'] == pt_features['Sex'][0]) &
-    #             (data['Age'].between(pt_features['Age'][0] - 5, pt_features['Age'][0] + 5)) &
-    #             (data['Recurrent Tumour'] == pt_features['Recurrent Tumour'][0]) &
-    #             (data['Stage'] == pt_features['Stage'][0]) &
-    #             (data['Concomitant CIS'] == pt_features['Concomitant CIS'][0]) &
-    #             #(data['T1 Substratification'] == pt_features['T1 Substratification'][0]) &
-    #             (data['Grade'] == pt_features['Grade'][0]) &
-    #             (data['Variant Histology'] == pt_features['Variant Histology'][0]) &
-    #             (data['Lymphovascular Invasion'] == pt_features['Lymphovascular Invasion'][0]) #&
-    #             #(data['Number of Tumours'] == pt_features['Number of Tumours'][0]) &
-    #             #(data['Tumour Diameter'] == pt_features['Tumour Diameter'][0]) &
-    #             #(data['Repeat TURBT'] == pt_features['Repeat TURBT'][0]) &
-    #             #(data['BCG'] == pt_features['BCG'][0]) &
-    #             #(data['SIC'] == pt_features['SIC'][0])
-    #             ]
-    #progression_cases = sum(query['Progression'])
-    #similar_cases = len(query['Progression'])
-    #if similar_cases == 0:
-    #    col2.write("There are no patients with similar characteristics.")
-    #else:
-    #    progression_rate = round((progression_cases/similar_cases)*100)
-    #    median_fu = round(np.median(query[query['Progression'] == 0]['Time']),1)
-    #    fu_quartile1 = round(np.percentile(query[query['Progression'] == 0]['Time'], 25),1)
-    #    fu_quartile3 = round(np.percentile(query[query['Progression'] == 0]['Time'], 75),1)
-    #
-    #    col2.write(f"There are {similar_cases} patients with similar characteristics. During a median follow-up of "
-    #             f"{median_fu} years (IQR {fu_quartile1}-{fu_quartile3}), {progression_cases} patients "
-    #             f"({progression_rate}%) progressed to muscle-invasive or metastatic disease.")
-    #
-    #
-    #    fig, ax = plt.subplots(1, 1)
-    #
-    #    # Plot cumulative incidence of progression for similar patients
-    #    kmf = KaplanMeierFitter()
-    #    ax = kmf.fit(query['Time'], query['Progression'],
-    #                 label='Similar patients').plot_cumulative_density(ax=ax, color='r', lw=3)
-    #    ax.set_ylim([0, 0.8])
-    #    ax.set_yticks(np.arange(0, 0.9, 0.1))
-    #    ax.set_yticklabels(np.arange(0, 90, 10))
-    #    ax.set_xlim([0, 5])
-    #    ax.set_xticks(range(0, 6, 1))
-    #    ax.set_xlabel('Years')
-    #    ax.set_ylabel('Incidence of Progression (%)')
-    #    ax.grid(which='major', axis='both', color='k', linestyle='-', linewidth=1, alpha=.1)
-    #    ax.legend().remove()
-    #    plt.title('Similar patients' + ' (n=%d)' % len(query['Progression']))
-    #
-    #    # Create another axes where we can put size ticks
-    #    ax2 = plt.twiny(ax=ax)
-    #    ax2.set_xticks(range(0, 11, 1))
-    #
-    #    # Set ticks and labels on bottom
-    #    ax2.xaxis.tick_bottom()
-    #
-    #    # Set limit
-    #    min_time, max_time = ax.get_xlim()
-    #    ax2.set_xlim(min_time, max_time)
-    #    ticklabels = []
-    #
-    #    for tick in ax2.get_xticks():
-    #        lbl = ""
-    #
-    #        # Get counts at tick
-    #        counts = []
-    #        for f in [kmf]:
-    #            event_table_slice = f.event_table.assign(
-    #                at_risk=lambda x: x.at_risk - x.removed
-    #            )
-    #            if not event_table_slice.loc[:tick].empty:
-    #                event_table_slice = (
-    #                    event_table_slice.loc[:tick, ["at_risk"]]
-    #                        .agg(
-    #                        {
-    #                            "at_risk": lambda x: x.tail(1).values
-    #                        }
-    #                    )  # see #1385
-    #                        .rename(
-    #                        {
-    #                            "at_risk": "At risk"
-    #                        }
-    #                    )
-    #                        .fillna(0)
-    #                )
-    #                counts.extend([int(c) for c in event_table_slice])
-    #
-    #        # Create tick label
-    #        lbl += ""
-    #        for i, c in enumerate(counts):
-    #            s = "\n{}"
-    #            lbl += s.format(c)
-    #        ticklabels.append(lbl)
-    #
-    #    # Align labels to the right so numbers can be compared easily
-    #    ax2.set_xticklabels(ticklabels, ha="center", y=-0.1)
-    #
-    #    plt.text(-0.7, -0.16, 'Number at Risk', ha='right')
-    #
-    #    col2.pyplot(fig, use_container_width=True)
-
-print(model)
