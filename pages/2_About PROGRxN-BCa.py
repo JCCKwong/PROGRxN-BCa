@@ -89,5 +89,5 @@ st.write('')
 col1, col2 = st.columns([1, 2])
 col1.image('https://lh3.googleusercontent.com/p/AF1QipMcP_iOErUmGpGCsxGVZWFN3rMn0Uj4Qg1lgp3s=s680-w680-h510',
            caption='CUASF Bladder Cancer Canada Research Grant')
-col1.image('https://datasciences.utoronto.ca/wp-content/uploads/2023/05/LOGO-TCAIREM-Color-Logo-copy-1024x230.png',
+col1.image('https://pbs.twimg.com/profile_images/1324121822263185409/XujIy-bC_400x400.jpg',
            caption='Temerty Innovation Grant')
