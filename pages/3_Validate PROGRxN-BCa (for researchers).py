@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import streamlit as st
-import PIL.Image
 import time
 import joblib
 from sksurv.ensemble import RandomSurvivalForest
@@ -25,8 +24,6 @@ def load_model():
     return model
 
 model = load_model()
-
-
 
 # Step 1: Download database template
 st.header("Step 1", divider="gray")
