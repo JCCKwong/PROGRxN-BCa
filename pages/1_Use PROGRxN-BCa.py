@@ -3,7 +3,7 @@ import numpy as np
 import streamlit as st
 import matplotlib.pyplot as plt
 from lifelines import KaplanMeierFitter
-import joblib
+import pickle
 from sksurv.ensemble import RandomSurvivalForest
 
 st.set_page_config(page_title="PROGRxN-BCa: PROGression Risk assessment in Non-muscle invasive Bladder Cancer",
@@ -29,7 +29,7 @@ st.markdown(
 
 @st.cache_data()
 def load_model():
-    model = joblib.load(r'model/model.joblib')
+    model = pickle.load(r'model/model.pkl')
     return model
 
 model = load_model()
