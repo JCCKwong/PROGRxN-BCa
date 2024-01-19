@@ -29,7 +29,7 @@ st.markdown(
 
 @st.cache_data()
 def load_model():
-    model = pickle.load(r'model/model.pkl')
+    model = pickle.load(open(r'model/model.pkl', 'rb'))
     return model
 
 model = load_model()
