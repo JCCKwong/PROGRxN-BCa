@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import streamlit as st
-import pickle
+import joblib
 from sksurv.ensemble import RandomSurvivalForest
 from sksurv import util
 from utils import metrics
@@ -19,7 +19,7 @@ st.sidebar.image('https://uofturology.ca/wp-content/themes/uofturology22/img/Uof
 
 @st.cache_data()
 def load_model():
-    model = pickle.load(open(r'model/model.pkl', 'rb'))
+    model = joblib.load(r'model\model.gz')
     return model
 
 model = load_model()
