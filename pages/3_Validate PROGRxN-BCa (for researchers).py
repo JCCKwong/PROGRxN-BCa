@@ -41,7 +41,7 @@ st.download_button(
     mime='text/csv',
 )
 
-dictionary = pd.read_excel(r'dictionary\dictionary.xlsx')
+dictionary = pd.read_excel(r'dictionary/dictionary.xlsx')
 st.dataframe(data=dictionary, use_container_width=True, hide_index=True)
 
 # Step 2: Populate database template
