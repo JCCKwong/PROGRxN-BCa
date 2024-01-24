@@ -93,7 +93,7 @@ bcg = col1.radio("Was intravesical bacillus Calmette-Guérin (BCG) planned?", op
 sic = col1.radio("Was single instillation chemotherapy given immediately after TURBT?",
                  options=('No', 'Yes'), horizontal=True, index=0)
 
-submit = st.button("SUBMIT")
+submit = col1.button("SUBMIT")
 if submit:
     ### DATA STORAGE ###
     sex = choices[sex]
