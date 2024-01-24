@@ -1,0 +1,18 @@
+Data field,Data type,Description,Coded values for categorical features
+ID,Numerical,Unique ID. Used to help identify any errors during the data quality check in Step 3.,Not applicable
+Age,Numerical,"Age at the time of initial TURBT, in years.",Not applicable
+Sex,Binary,Biological sex.,0 = Male; 1 = Female
+Recurrent tumour,Binary,"Prior history of urothelial cancer, including bladder or upper tract urothelial carcinoma.",0 = No; 1 = Yes
+Stage,Categorical,From TURBT pathology report.,0 = Ta; 1 = Primary CIS; 2 = T1
+T1 substratification,Binary,"From TURBT pathology report. If the patient had Ta or primary CIS, this should be coded as 0.","0 = Ta, primary CIS, or T1 superficial invasion; 1 = T1 extensive invasion"
+Concomitant CIS,Binary,"From TURBT pathology report. If the patient had primary CIS, this should be coded as 0.",0 = No; 1 = Yes
+Grade,Binary,"From TURBT pathology report, based on the WHO 2004/2022 classification system.",0 = Low grade or PUNLMP; 1 = High grade
+Variant histology,Binary,From TURBT pathology report.,"0 = No (urothelial, squamous, or glandular); 1 = Yes (micropapillary, plasmacytoid, sarcomatoid, neuroendocrine, or nested variant)"
+Lymphovascular invasion,Binary,From TURBT pathology report.,0 = No; 1 = Yes
+Number of tumours,Binary,From TURBT or pre-TURBT cystoscopy operative report.,0 = Single; 1 = Multiple
+Tumour diameter,Binary,From TURBT or pre-TURBT cystoscopy operative report.,0 = Less than 3 cm; 1 = 3 cm or greater
+Repeat TURBT,Binary,If a repeat TURBT was planned within 6 weeks of initial TURBT.,0 = No; 1 = Yes
+BCG,Binary,"If intravesical BCG was planned based on the pathology of initial TURBT. If BCG was given after subsequent tumour recurrences, this was coded as 0.",0 = No; 1 = Yes
+SIC,Binary,"If perioperative single instillation chemotherapy was given. If perioperative chemotherapy was given after subsequent tumour recurrences, this was coded as 0.",0 = No; 1 = Yes
+Progression,Binary,"Development of muscle-invasive disease (stage ? T2 from pathology report either at subsequent TURBT or cystectomy), nodal or metastatic disease (from pathology report of biopsy of node/metastases or imaging report).",0 = No; 1 = Yes
+Time to progression,Numerical,"Time (in years) from date of initial TURBT to date of development of progression, as defined above. Patients who did not progress were censored at date of last follow-up cystoscopy or date of death, whichever event occurred first.",Not applicable
