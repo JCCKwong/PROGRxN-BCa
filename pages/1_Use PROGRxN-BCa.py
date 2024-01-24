@@ -29,7 +29,7 @@ st.markdown(
 
 @st.cache_data()
 def load_model():
-    model = joblib.load(r'model\model.gz')
+    model = joblib.load(r'model/model.gz')
     return model
 
 model = load_model()
