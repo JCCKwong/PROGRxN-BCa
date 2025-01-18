@@ -137,10 +137,10 @@ if submit:
     fig_individual, ax_ind = plt.subplots(1, 1, figsize=(6, 3))
 
     kmf = KaplanMeierFitter()
-    kmf.fit(similar_data['Time'], similar_data['Progression']).plot_cumulative_density(ax=ax_ind,
-                                                                                       color='blue',
-                                                                                       lw=3,
-                                                                                       ci_show=True)
+    ax_ind = kmf.fit(similar_data['Time'], similar_data['Progression']).plot_cumulative_density(ax=ax_ind,
+                                                                                                color='blue',
+                                                                                                lw=3,
+                                                                                                ci_show=True)
 
     for fn in prog_surv:
         ax_ind.step(fn.x, 1-fn(fn.x), where="post", label=None, color='red', lw=3, ls='-')
