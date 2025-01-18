@@ -33,7 +33,7 @@ def load_model():
     risk_scores = pd.read_excel(r'model/risk scores.xlsx')
     return model, risk_scores
 
-model, risk scores = load_model()
+model, risk_scores = load_model()
 
 col1, col2 = st.columns([1, 1])
 
