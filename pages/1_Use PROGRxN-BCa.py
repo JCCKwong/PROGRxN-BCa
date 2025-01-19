@@ -30,7 +30,7 @@ st.markdown(
 @st.cache_data()
 def load_model():
     model = joblib.load(r'model/model.gz')
-    risk_scores = pd.read_csv(r'model/risk scores.csv')
+    risk_scores = pd.read_csv(r'model/train risk scores.csv')
     return model, risk_scores
 
 model, risk_scores = load_model()
