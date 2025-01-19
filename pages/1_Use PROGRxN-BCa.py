@@ -173,7 +173,7 @@ if submit:
                 #[np.abs(kmf.confidence_interval_cumulative_density_.index.values - 5).argmin()]]['KM_estimate_lower_0.95']*100,
                 #kmf.confidence_interval_cumulative_density_.loc[kmf.confidence_interval_cumulative_density_.index
                 #[np.abs(kmf.confidence_interval_cumulative_density_.index.values - 5).argmin()]]['KM_estimate_upper_0.95']*100)
-               )
+               ))
 
     ibcg_conditions = [(pt_features['Stage'][0] == 0) & (pt_features['Grade'][0] == 0)
                        & (pt_features['Recurrent Tumour'][0] == 1) & (pt_features['Concomitant CIS'][0] == 0)
