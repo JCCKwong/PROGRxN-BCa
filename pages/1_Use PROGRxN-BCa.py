@@ -131,7 +131,7 @@ if submit:
     pt_features = pd.DataFrame(pt_data, index=[0])
 
     prog_surv = model.predict_survival_function(pt_features)
-    prog_risk = model.predict(pt_features).values[0]
+    prog_risk = model.predict(pt_features)[0]
     similar_data = risk_scores[(risk_scores['Risk Score'] > prog_risk*0.95) &
                                (risk_scores['Risk Score'] < prog_risk*1.05)]
     fig_individual, ax_ind = plt.subplots(1, 1, figsize=(6, 3))
