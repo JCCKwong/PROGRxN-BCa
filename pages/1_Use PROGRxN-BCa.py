@@ -137,11 +137,12 @@ if submit:
     fig_individual, ax_ind = plt.subplots(1, 1, figsize=(6, 3))
 
     kmf = KaplanMeierFitter()
-    ax_ind = kmf.fit(similar_data['Time'], similar_data['Progression']).plot_cumulative_density(ax=ax_ind,
-                                                                                                color='green',
-                                                                                                lw=1,
-                                                                                                alpha=0.1,
-                                                                                                ci_show=True)
+    kmf.fit(similar_data['Time'], similar_data['Progression'])
+    #ax_ind = kmf.fit(similar_data['Time'], similar_data['Progression']).plot_cumulative_density(ax=ax_ind,
+    #                                                                                            color='green',
+    #                                                                                            lw=1,
+    #                                                                                            alpha=0.1,
+    #                                                                                            ci_show=True)
 
     for fn in prog_surv:
         ax_ind.step(fn.x, 1-fn(fn.x), where="post", label=None, color='red', lw=3, ls='-')
@@ -168,6 +169,14 @@ if submit:
                                     "Risk of progression (%)": [risk_1yr, risk_5yr, risk_10yr]
                                     })
     col2.dataframe(data=individual_risk, use_container_width=True, hide_index=True)
+
+    col2.write('From our cohort of 12659 patients, **{} had a similar risk score as you**. The estimated 5-year progression '
+               'rate of these patients was {:0.0f}% (95% CI {:0.0f}-{:0.0f}).'.format
+               (kmf.cumulative_density_at_times(times=5).values[0]*100,
+                kmf.confidence_interval_cumulative_density_.loc[kmf.confidence_interval_cumulative_density_.index
+                [np.abs(kmf.confidence_interval_cumulative_density_.index.values - 5).argmin()]]['KM_estimate_lower_0.95']*100,
+                kmf.confidence_interval_cumulative_density_.loc[kmf.confidence_interval_cumulative_density_.index
+                [np.abs(kmf.confidence_interval_cumulative_density_.index.values - 5).argmin()]]['KM_estimate_upper_0.95']*100))
 
     ibcg_conditions = [(pt_features['Stage'][0] == 0) & (pt_features['Grade'][0] == 0)
                        & (pt_features['Recurrent Tumour'][0] == 1) & (pt_features['Concomitant CIS'][0] == 0)
