@@ -170,9 +170,10 @@ if submit:
                                     })
     col2.dataframe(data=individual_risk, use_container_width=True, hide_index=True)
 
-    col2.write('From our cohort of 12659 patients, **{} had a similar risk score as you**. The estimated 5-year progression '
+    col2.write('From our cohort of 12659 patients, **{:0.0f} had a similar risk score as you**. The estimated 5-year progression '
                'rate of these patients was {:0.0f}% (95% CI {:0.0f}-{:0.0f}).'.format
-               (kmf.cumulative_density_at_times(times=5).values[0]*100,
+               (len(similar_data),
+                kmf.cumulative_density_at_times(times=5).values[0]*100,
                 kmf.confidence_interval_cumulative_density_.loc[kmf.confidence_interval_cumulative_density_.index
                 [np.abs(kmf.confidence_interval_cumulative_density_.index.values - 5).argmin()]]['KM_estimate_lower_0.95']*100,
                 kmf.confidence_interval_cumulative_density_.loc[kmf.confidence_interval_cumulative_density_.index
