@@ -43,7 +43,7 @@ col1.header("Enter your information", divider='gray')
 # Results column
 col2.header("Your results", divider='gray')
 col2.write("This graph displays your personalized risk of progressing to muscle-invasive or metastatic disease over "
-           "time. Updated")
+           "time.")
 
 choices = {'Male': 0,
            'Female': 1,
