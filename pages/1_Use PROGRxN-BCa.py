@@ -138,7 +138,7 @@ if submit:
 
     kmf = KaplanMeierFitter()
     ax_ind = kmf.fit(similar_data['Time'], similar_data['Progression']).plot_cumulative_density(ax=ax_ind,
-                                                                                                color='blue',
+                                                                                                color='green',
                                                                                                 lw=3,
                                                                                                 ci_show=True)
 
