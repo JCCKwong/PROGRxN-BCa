@@ -30,7 +30,7 @@ st.markdown(
 @st.cache_data()
 def load_model():
     model = joblib.load(r'model/model.gz')
-    risk_scores = pd.read_csv(r'model/train risk scores.csv')
+    risk_scores = pd.read_csv(r'model/risk scores.csv')
     return model, risk_scores
 
 model, risk_scores = load_model()
@@ -132,14 +132,15 @@ if submit:
 
     prog_surv = model.predict_survival_function(pt_features)
     prog_risk = model.predict(pt_features)[0]
-    similar_data = risk_scores[(risk_scores['Risk Score'] > prog_risk*0.95) &
-                               (risk_scores['Risk Score'] < prog_risk*1.05)]
+    similar_data = risk_scores[(risk_scores['Risk Score'] > prog_risk*0.925) &
+                               (risk_scores['Risk Score'] < prog_risk*1.025)]
     fig_individual, ax_ind = plt.subplots(1, 1, figsize=(6, 3))
 
     kmf = KaplanMeierFitter()
     ax_ind = kmf.fit(similar_data['Time'], similar_data['Progression']).plot_cumulative_density(ax=ax_ind,
                                                                                                 color='green',
-                                                                                                lw=3,
+                                                                                                lw=1,
+                                                                                                alpha=0.1,
                                                                                                 ci_show=True)
 
     for fn in prog_surv:
