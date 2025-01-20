@@ -132,8 +132,8 @@ if submit:
 
     prog_surv = model.predict_survival_function(pt_features)
     prog_risk = model.predict(pt_features)[0]
-    similar_data = risk_scores[(risk_scores['Risk Score'] > prog_risk*0.925) &
-                               (risk_scores['Risk Score'] < prog_risk*1.025)]
+    similar_data = risk_scores[(risk_scores['Risk Score'] > prog_risk*0.95) &
+                               (risk_scores['Risk Score'] < prog_risk*1.05)]
     fig_individual, ax_ind = plt.subplots(1, 1, figsize=(6, 3))
 
     kmf = KaplanMeierFitter()
@@ -165,7 +165,7 @@ if submit:
                                     })
     col2.dataframe(data=individual_risk, use_container_width=True, hide_index=True)
 
-    col2.write('From our cohort of 12659 patients, **{:0.0f} had a similar risk score as you**.'
+    col2.write('From our cohort of 12659 patients, {:0.0f} had a similar risk score as you. '
                'During a median follow-up of {:0.1f} years (IQR {:0.1f}-{:0.1f}), {:0.0f} ({:0.0f}%) '
                'progressed into muscle invasive or metastatic disease.'.format
                #'The estimated 5-year progression rate of these patients was {:0.0f}% (95% CI {:0.0f}-{:0.0f}).'.format
