@@ -84,11 +84,11 @@ st.header('Contributing Institutions', divider='gray')
 st.write('')
 # Sample hospital data with logo URLs
 hospital_data = [
-    {"name": "Toronto General Hospital", "lat": 43.6583, "lon": -79.3891, "country": "Canada", 
-     "logo": "https://upload.wikimedia.org/wikipedia/en/7/77/UHN_Toronto_General_Hospital_logo.png"},
+    {"name": "University Health Network, Toronto", "lat": 43.6583, "lon": -79.3891, "country": "Canada", 
+     "logo": "https://www.dhdp.ca/images/default-source/member-logos/uhn-logo-with-michener.tmb-cfthumb_l.png?sfvrsn=f561eae9_1"},
     
     {"name": "Mayo Clinic", "lat": 44.0216, "lon": -92.4668, "country": "USA", 
-     "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Mayo_Clinic_logo.svg/1200px-Mayo_Clinic_logo.svg.png"},
+     "logo": "https://assets.mayoclinic.org/content/dam/mayoclinic/logos/mayo-clinic-logo.svg"},
     
     {"name": "Charité - Universitätsmedizin Berlin", "lat": 52.525, "lon": 13.378, "country": "Germany",
      "logo": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Charite_logo.svg"},
