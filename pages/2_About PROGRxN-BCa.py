@@ -82,15 +82,23 @@ st.markdown(
 
 st.header('Contributing Institutions', divider='gray')
 st.write('')
-# List of participating hospitals
+# Sample hospital data with logo URLs
 hospital_data = [
-    {"name": "Toronto General Hospital", "lat": 43.6583, "lon": -79.3891, "country": "Canada"},
-    {"name": "Mayo Clinic", "lat": 44.0216, "lon": -92.4668, "country": "USA"},
-    {"name": "Charité - Universitätsmedizin Berlin", "lat": 52.525, "lon": 13.378, "country": "Germany"},
+    {"name": "Toronto General Hospital", "lat": 43.6583, "lon": -79.3891, "country": "Canada", 
+     "logo": "https://upload.wikimedia.org/wikipedia/en/7/77/UHN_Toronto_General_Hospital_logo.png"},
+    
+    {"name": "Mayo Clinic", "lat": 44.0216, "lon": -92.4668, "country": "USA", 
+     "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Mayo_Clinic_logo.svg/1200px-Mayo_Clinic_logo.svg.png"},
+    
+    {"name": "Charité - Universitätsmedizin Berlin", "lat": 52.525, "lon": 13.378, "country": "Germany",
+     "logo": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Charite_logo.svg"},
 ]
 
 # Convert to DataFrame
 df = pd.DataFrame(hospital_data)
+
+# Streamlit App
+st.title("Interactive Hospital Map with Logos")
 
 # Select Country
 selected_country = st.selectbox("Select a country:", ["All"] + list(df["country"].unique()))
@@ -106,19 +114,29 @@ view_state = pdk.ViewState(
     pitch=0
 )
 
-layer = pdk.Layer(
-    "ScatterplotLayer",
+# Define Icon Layer
+icon_layer = pdk.Layer(
+    "IconLayer",
     data=filtered_df,
     get_position=["lon", "lat"],
-    get_color=[255, 0, 0, 200],  # Red markers
-    get_radius=50000,
+    get_icon="icon_data",
+    get_size=5,  # Size multiplier
     pickable=True
 )
 
+# Prepare Data for Icons
+df["icon_data"] = df.apply(lambda row: {
+    "url": row["logo"],
+    "width": 100,  # Icon width
+    "height": 100,
+    "anchorY": 100  # Offset for positioning
+}, axis=1)
+
+# Tooltip Configuration
 tooltip = {"html": "<b>{name}</b>", "style": {"color": "white"}}
 
 # Render Map
-st.pydeck_chart(pdk.Deck(layers=[layer], initial_view_state=view_state, tooltip=tooltip))
+st.pydeck_chart(pdk.Deck(layers=[icon_layer], initial_view_state=view_state, tooltip=tooltip))
 #st.image('https://bladdercancercanada.org/wp-content/uploads/2017/03/BCCCentersMap.png',
 #         caption='Canadian Bladder Cancer Information System')
 
