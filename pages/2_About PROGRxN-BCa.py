@@ -20,30 +20,34 @@ st.markdown(
     model development and validation study.**\n
 
     *Jethro C.C. Kwong$^{1,2,3}$, Zizo Al-Daqqaq$^{4}$, Yashan Chelliahpillai$^{4}$, Soomin Lee$^{4}$, 
-    Kellie Kim$^{4}$, Maximiliano Ringa$^{5}$, Amna Ali$^{5}$, Andrew Feifer$^{1,2,5}$, Katherine Lajkosz$^{2}$, 
-    Marian S. Wettstein$^{1,2}$, Amy Chan$^{6}$, Wassim Kassouf$^{7}$, Peter C. Black$^{8}$, Rodney H. Breau$^{9}$, 
-    Michele Lodde$^{10}$, Adrian Fairey$^{11}$, Jean-Baptiste Lattouf$^{12}$, Claudio Jeldres$^{13}$, 
-    Ricardo Rendon$^{14}$, Nimira Alimohamed$^{15}$, Peter Chung$^{16}$, Neil E. Fleshner$^{1,2}$, 
-    Antonio Finelli$^{1,2}$, Alexandre R. Zlotta$^{1,2,6}$, Alistair E.W. Johnson$^{3,17,18}$, 
-    Girish S. Kulkarni$^{1,2,3}$*\n
+    Kellie Kim$^{4}$, Maximiliano Ringa$^{5}$, Andrew Feifer$^{1,2,5}$, Katherine Lajkosz$^{2}$, 
+    Marian S. Wettstein$^{1,2}$, Amy Chan$^{6}$, Taeweon Lee$^{7}$, Myky Nguyen$^{8}$, Wassim Kassouf$^{9}$, 
+    Peter C. Black$^{10}$, Rodney H. Breau$^{11}$, Michele Lodde$^{12}$, Adrian Fairey$^{13}$, 
+    Jean-Baptiste Lattouf$^{14}$, Claudio Jeldres$^{15}$, Ricardo Rendon$^{16}$, Nimira Alimohamed$^{17}$, 
+    Neil E. Fleshner$^{1,2}$, Romain Diamand$^{8}$, Paolo Gontero$^{18}$, Richard J. Sylvester$^{19}$, 
+    Bas W.G. van Rhijn$^{20}$, Ashish M. Kamat$^{7}$, Alistair E.W. Johnson$^{3,21,22}$, 
+    Alexandre R. Zlotta$^{1,2,6}$, Girish S. Kulkarni$^{1,2,3}$, on behalf of the PROGRxN-BCa consortium*\n
 
-    1. Division of Urology, Department of Surgery, University of Toronto, Toronto, Ontario, Canada
-    1. Division of Urology, Department of Surgery, University Health Network, Toronto, Ontario, Canada
-    1. Temerty Centre for AI Research and Education in Medicine, University of Toronto, Toronto, Ontario, Canada
-    1. Temerty Faculty of Medicine, University of Toronto, Toronto, Ontario, Canada
+    1. Division of Urology, Department of Surgery, University of Toronto, Toronto, Canada
+    1. Division of Urology, Department of Surgery, University Health Network, Toronto, Canada
+    1. Temerty Centre for AI Research and Education in Medicine, University of Toronto, Toronto, Canada
+    1. Temerty Faculty of Medicine, University of Toronto, Toronto, Canada
     1. Division of Urology, Department of Surgery, Trillium Health Partners, Mississauga, Canada
     1. Division of Urology, Department of Surgery, Mount Sinai Hospital, Sinai Health System, Toronto, Canada
+    1. Department of Urology, University of Texas MD Anderson Cancer Center, Houston, United States
+    1. Department of Urology, Jules Bordet Institute-Erasme Hospital, Hôpital Universitaire de Bruxelles, Université Libre de Bruxelles, Brussels, Belgium
     1. Department of Urology, McGill University Health Centre, Montreal, Canada
     1. Department of Urologic Sciences, University of British Columbia, Vancouver, Canada
-    1. Division of Urology, Department of Surgery, The Ottawa Hospital, Ottawa, Canada
+    1. Division of Urology, Department of Surgery, The Ottawa Hospital Research Institute, Ottawa, Canada
     1. Division of Urology, Department of Surgery, CHU de Québec-Université Laval, Quebec City, Canada
     1. Division of Urology, Department of Surgery, University of Alberta, Edmonton, Canada
     1. Division of Urology, Department of Surgery, Centre Hospitalier de l'Université de Montréal, Montreal, Canada
     1. Division of Urology, Department of Surgery, Université de Sherbrooke, Sherbrooke, Canada
     1. Department of Urology, Dalhousie University, Halifax, Canada
     1. Department of Oncology, Cumming School of Medicine, University of Calgary, Calgary, Canada
-    1. Radiation Medicine Program, Princess Margaret Cancer Centre, University Health Network, University of Toronto, 
-    Toronto, Canada
+    1. Department of Urology, Città della Salute e della Scienza, University of Torino School of Medicine, Torino, Italy
+    1. Department of Biostatistics, European Organization for Research and Treatment of Cancer, Brussels, Belgium
+    1. Department of Surgical Oncology (Urology), Netherlands Cancer Institute, Antoni van Leeuwenhoek Hospital, Amsterdam, The Netherlands
     1. Division of Biostatistics, Dalla Lana School of Public Health, University of Toronto, Toronto, Canada
     1. Vector Institute, Toronto, Canada
 
@@ -53,37 +57,39 @@ st.markdown(
 st.header('Abstract', divider='gray')
 st.markdown(
     """
-    **Background**: Accurate prediction of progression in non-muscle invasive bladder cancer (NMIBC) is essential for 
-    patient counselling and treatment planning. We aimed to develop, externally validate, and conduct an algorithmic 
-    audit of a progression risk assessment tool using artificial intelligence approaches (PROGRxN-BCa).\n
+    **Background**: Non-muscle invasive bladder cancer (NMIBC) is a heterogenous disease with varying risks of 
+    progression to potentially lethal muscle-invasive disease. Current tools perform poorly, which impacts downstream 
+    management and patient outcomes. To address these limitations, we developed a progression risk assessment tool 
+    using artificial intelligence approaches (PROGRxN-BCa).\n
     
-    **Methods**: PROGRxN-BCa, based on a random survival forest, was trained on NMIBC patients treated from Jan 1, 2005 
-    to Jun 30, 2022 at four Canadian academic or community hospitals. External validation was performed on patients 
-    treated from Nov 1, 2011 to Sep 11, 2023 across 13 institutions from the Canadian Bladder Cancer Information 
-    System. Primary outcome was time to progression, defined as first development of muscle-invasive or metastatic 
-    disease. PROGRxN-BCa was compared to the European Association of Urology risk calculator and a LASSO Cox model 
-    using identical variables as PROGRxN-BCa. Model performance in predicting five-year progression risk was evaluated 
-    using concordance index, calibration plots, instability assessments, decision curve analysis, and an algorithmic 
-    audit.\n
+    **Methods**: PROGRxN-BCa was trained using 14 clinicopathological features on 3324 NMIBC patients treated from 
+    2005-2022 at four Canadian academic or community hospitals. External testing was performed on 9335 patients 
+    treated from 2005-2023 across 30 North American and European institutions. Primary outcome was time to progression, 
+    defined as development of muscle-invasive or metastatic disease. PROGRxN-BCa was compared to the guideline-endorsed 
+    European Association of Urology (EAU) risk calculator. Performance for predicting five-year progression risk was 
+    characterized using concordance index, calibration plots, instability assessments, decision curve analysis, and an 
+    algorithmic audit.\n
     
-    **Findings**: Overall, 999 out of 7032 patients developed progression during a median follow-up of 3.0 years 
-    (IQR 1.4-5.4). PROGRxN-BCa had the highest concordance index overall (training: 0.83, 95% CI 0.81-0.84; validation: 
-    0.76, 95% CI 0.74-0.77) and across different subgroups. It was well calibrated, more stable, and had the highest 
-    net benefit for clinically relevant thresholds between 15 and 40%. PROGRxN-BCa could better substratify 
-    intermediate-risk patients compared to current guideline-endorsed substratification tools, reclassifying 5% of 
-    these patients with an observed five-year progression risk of 13.1% who otherwise would not have been considered 
-    for treatment intensification or clinical trial enrollment.\n
+    **Findings**: Among 12659 patients, 1405 (11%) progressed over a median follow-up of 3.3 years (IQR 1.6-5.8). 
+    PROGRxN-BCa had significantly higher concordance index and net benefit overall and across different subgroups 
+    (training: 0.83, 95% CI 0.81-0.84; testing: 0.79, 95% CI 0.77-0.80) compared to the EAU risk calculator 
+    (training 0.76, 95% CI 0.74-0.78; testing 0.71, 95% CI 0.70-0.72). This improvement was consistent among patients 
+    who received guideline-concordant or non-guideline concordant care. Furthermore, it outperformed other 
+    guideline-endorsed tools and a previously published AI model using the World Health Organization 1973 grade. 
+    Compared to current guideline recommendations, PROGRxN-BCa improved substratification of intermediate-risk 
+    patients into distinct risk tertiles with five-year progression risks of 2, 7, and 17% - including 9% of patients 
+    in the highest risk tertile who may otherwise not be considered for treatment intensification.\n
     
-    **Interpretation**: PROGRxN-BCa outperformed current prognostication tools and improved substratification of the 
-    heterogenous intermediate-risk group. Future work should examine the clinical impact of implementing PROGRxN-BCa 
-    in practice.
+    **Interpretation**: PROGRxN-BCa outperformed current tools and improved substratification, especially in the 
+    heterogenous intermediate-risk group, in the largest NMIBC cohort of its kind. PROGRxN-BCa may better inform 
+    risk adapted management for current NMIBC guidelines.
     """
 )
 
 st.header('Contributing Institutions', divider='gray')
 st.write('')
 # Red pin icon URL (Can be replaced with a local file if running locally)
-RED_PIN_URL = "https://upload.wikimedia.org/wikipedia/commons/d/d1/Google_Maps_pin.svg"
+RED_PIN_URL = "https://pngimg.com/uploads/google_maps_pin/google_maps_pin_PNG76.png"
 
 # Sample hospital data
 hospital_data = [
@@ -98,8 +104,8 @@ df = pd.DataFrame(hospital_data)
 # Add icon metadata to each hospital
 df["icon_data"] = df.apply(lambda row: {
     "url": RED_PIN_URL,
-    "width": 100,  # Pin size width
-    "height": 100,
+    "width": 500,  # Pin size width
+    "height": 500,
     "anchorY": 100  # Ensures the pin's tip points to the exact location
 }, axis=1)
 
