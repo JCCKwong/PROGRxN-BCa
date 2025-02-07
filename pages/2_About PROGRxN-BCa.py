@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import streamlit as st
+import pydeck as pdk
 
 st.set_page_config(page_title="PROGRxN-BCa: PROGression Risk assessment in Non-muscle invasive Bladder Cancer",
                    page_icon="https://bladdercancercanada.org/wp-content/uploads/2017/03/bcc-fav-icon.png",
@@ -81,8 +82,45 @@ st.markdown(
 
 st.header('Contributing Institutions', divider='gray')
 st.write('')
-st.image('https://bladdercancercanada.org/wp-content/uploads/2017/03/BCCCentersMap.png',
-         caption='Canadian Bladder Cancer Information System')
+# List of participating hospitals
+hospital_data = [
+    {"name": "Toronto General Hospital", "lat": 43.6583, "lon": -79.3891, "country": "Canada"},
+    {"name": "Mayo Clinic", "lat": 44.0216, "lon": -92.4668, "country": "USA"},
+    {"name": "Charité - Universitätsmedizin Berlin", "lat": 52.525, "lon": 13.378, "country": "Germany"},
+]
+
+# Convert to DataFrame
+df = pd.DataFrame(hospital_data)
+
+# Select Country
+selected_country = st.selectbox("Select a country:", ["All"] + list(df["country"].unique()))
+
+# Filter Data Based on Selection
+filtered_df = df if selected_country == "All" else df[df["country"] == selected_country]
+
+# Pydeck Map Configuration
+view_state = pdk.ViewState(
+    latitude=df["lat"].mean(),
+    longitude=df["lon"].mean(),
+    zoom=3,
+    pitch=0
+)
+
+layer = pdk.Layer(
+    "ScatterplotLayer",
+    data=filtered_df,
+    get_position=["lon", "lat"],
+    get_color=[255, 0, 0, 200],  # Red markers
+    get_radius=50000,
+    pickable=True
+)
+
+tooltip = {"html": "<b>{name}</b>", "style": {"color": "white"}}
+
+# Render Map
+st.pydeck_chart(pdk.Deck(layers=[layer], initial_view_state=view_state, tooltip=tooltip))
+#st.image('https://bladdercancercanada.org/wp-content/uploads/2017/03/BCCCentersMap.png',
+#         caption='Canadian Bladder Cancer Information System')
 
 st.header('Funding', divider='gray')
 st.write('')
