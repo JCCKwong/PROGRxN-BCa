@@ -82,23 +82,29 @@ st.markdown(
 
 st.header('Contributing Institutions', divider='gray')
 st.write('')
-# Sample hospital data with logo URLs
+# Red pin icon URL (Can be replaced with a local file if running locally)
+RED_PIN_URL = "https://upload.wikimedia.org/wikipedia/commons/d/d1/Google_Maps_pin.svg"
+
+# Sample hospital data
 hospital_data = [
-    {"name": "University Health Network, Toronto", "lat": 43.6583, "lon": -79.3891, "country": "Canada", 
-     "logo": "https://www.dhdp.ca/images/default-source/member-logos/uhn-logo-with-michener.tmb-cfthumb_l.png?sfvrsn=f561eae9_1"},
-    
-    {"name": "Mayo Clinic", "lat": 44.0216, "lon": -92.4668, "country": "USA", 
-     "logo": "https://assets.mayoclinic.org/content/dam/mayoclinic/logos/mayo-clinic-logo.svg"},
-    
-    {"name": "Charité - Universitätsmedizin Berlin", "lat": 52.525, "lon": 13.378, "country": "Germany",
-     "logo": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Charite_logo.svg"},
+    {"name": "Toronto General Hospital", "lat": 43.6583, "lon": -79.3891, "country": "Canada"},
+    {"name": "Mayo Clinic", "lat": 44.0216, "lon": -92.4668, "country": "USA"},
+    {"name": "Charité - Universitätsmedizin Berlin", "lat": 52.525, "lon": 13.378, "country": "Germany"},
 ]
 
 # Convert to DataFrame
 df = pd.DataFrame(hospital_data)
 
+# Add icon metadata to each hospital
+df["icon_data"] = df.apply(lambda row: {
+    "url": RED_PIN_URL,
+    "width": 100,  # Pin size width
+    "height": 100,
+    "anchorY": 100  # Ensures the pin's tip points to the exact location
+}, axis=1)
+
 # Streamlit App
-st.title("Interactive Hospital Map with Logos")
+st.title("Interactive Hospital Map with Red Pins")
 
 # Select Country
 selected_country = st.selectbox("Select a country:", ["All"] + list(df["country"].unique()))
@@ -114,23 +120,15 @@ view_state = pdk.ViewState(
     pitch=0
 )
 
-# Define Icon Layer
+# Define Icon Layer (Using Red Pin)
 icon_layer = pdk.Layer(
     "IconLayer",
     data=filtered_df,
     get_position=["lon", "lat"],
     get_icon="icon_data",
-    get_size=5,  # Size multiplier
+    get_size=5,  # Adjust size as needed
     pickable=True
 )
-
-# Prepare Data for Icons
-df["icon_data"] = df.apply(lambda row: {
-    "url": row["logo"],
-    "width": 100,  # Icon width
-    "height": 100,
-    "anchorY": 100  # Offset for positioning
-}, axis=1)
 
 # Tooltip Configuration
 tooltip = {"html": "<b>{name}</b>", "style": {"color": "white"}}
