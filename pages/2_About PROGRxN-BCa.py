@@ -90,19 +90,14 @@ st.markdown(
 st.header('Contributing Institutions', divider='gray')
 st.write('')
 
-# Define hospital locations
-hospitals = {
-    "Toronto General Hospital": [43.6584, -79.3892],
-    "Credit Valley Hospital": [43.5600, -79.7125],
-    "Mayo Clinic Rochester": [44.0217, -92.4668]
-}
+data = pd.DataFrame({
+    "name": ["Toronto General Hospital", "Credit Valley Hospital", "Mayo Clinic Rochester"],
+    "lat": [43.6584, 43.5600, 44.0217],
+    "lon": [-79.3892, -79.7125, -92.4668]
+})
 
-# Initialize map centered around North America
-m = folium.Map(location=[44.0, -85.0], zoom_start=4)
-
-# Add markers for hospitals
-for name, coords in hospitals.items():
-    folium.Marker(location=coords, popup=name, tooltip=name).add_to(m)
+# Display Map
+st.map(data)
 #st.image('https://bladdercancercanada.org/wp-content/uploads/2017/03/BCCCentersMap.png',
 #         caption='Canadian Bladder Cancer Information System')
 
