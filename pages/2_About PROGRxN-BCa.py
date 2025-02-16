@@ -14,9 +14,8 @@ st.sidebar.image('https://uofturology.ca/wp-content/themes/uofturology22/img/Uof
 
 st.markdown(
         """
-    **An artificial intelligence-based model to predict 5-year progression risk in non-muscle invasive bladder cancer 
-    (PROGRxN-BCa) and improve substratification of intermediate-risk patients: a retrospective, multi-institutional 
-    model development and validation study.**\n
+    **An artificial intelligence-based model to predict progression risk in non-muscle invasive bladder cancer (PROGRxN-BCa) and improve 
+    substratification of intermediate-risk patients: an international model development and evaluation study**\n
 
     *Jethro C.C. Kwong$^{1,2,3}$, Zizo Al-Daqqaq$^{4}$, Yashan Chelliahpillai$^{4}$, Soomin Lee$^{4}$, 
     Kellie Kim$^{4}$, Maximiliano Ringa$^{5}$, Andrew Feifer$^{1,2,5}$, Katherine Lajkosz$^{2}$, 
@@ -88,14 +87,46 @@ st.markdown(
 st.header('Contributing Institutions', divider='gray')
 st.write('')
 
-data = pd.DataFrame({
-    "name": ["Toronto General Hospital", "Credit Valley Hospital", "Mayo Clinic Rochester"],
-    "lat": [43.6584, 43.5600, 44.0217],
-    "lon": [-79.3892, -79.7125, -92.4668]
-})
+# Sample hospital data (Replace with your own list)
+hospital_data = [
+    {"name": "Toronto General Hospital", "lat": 43.6583, "lon": -79.3891},
+    {"name": "Mayo Clinic", "lat": 44.0216, "lon": -92.4668},
+    {"name": "Charité - Universitätsmedizin Berlin", "lat": 52.525, "lon": 13.378},
+]
+
+# Convert to DataFrame
+df = pd.DataFrame(hospital_data)
+
+# Pydeck Map Configuration
+view_state = pdk.ViewState(
+    latitude=df["lat"].mean(),
+    longitude=df["lon"].mean(),
+    zoom=3,
+    pitch=0
+)
+
+layer = pdk.Layer(
+    "ScatterplotLayer",
+    data=df,
+    get_position=["lon", "lat"],
+    get_color=[255, 0, 0, 200],  # Red markers
+    get_radius=50000,
+    pickable=True
+)
+
+tooltip = {"html": "<b>{name}</b>", "style": {"color": "white"}}
+
+# Render Map
+st.pydeck_chart(pdk.Deck(layers=[layer], initial_view_state=view_state, tooltip=tooltip))
+
+#data = pd.DataFrame({
+#    "name": ["Toronto General Hospital", "Credit Valley Hospital", "Mayo Clinic Rochester"],
+#    "lat": [43.6584, 43.5600, 44.0217],
+#    "lon": [-79.3892, -79.7125, -92.4668]
+#})
 
 # Display Map
-st.map(data)
+#st.map(data)
 #st.image('https://bladdercancercanada.org/wp-content/uploads/2017/03/BCCCentersMap.png',
 #         caption='Canadian Bladder Cancer Information System')
 
