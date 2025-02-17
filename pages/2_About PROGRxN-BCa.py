@@ -142,7 +142,7 @@ layer = pdk.Layer(
     data=df,
     get_position=["lon", "lat"],
     get_color=[255, 0, 0, 200],  # Red markers
-    get_radius="5000 * (2 ** view_state['zoom'])",
+    get_radius=5000 * (2 ** view_state['zoom']),
     pickable=True
 )
 
