@@ -134,6 +134,8 @@ view_state = pdk.ViewState(
     latitude=df["lat"].mean(),
     longitude=df["lon"].mean(),
     zoom=3,
+    min_zoom=1,
+    max_zoom=15,
     pitch=0
 )
 
@@ -142,8 +144,9 @@ layer = pdk.Layer(
     data=df,
     get_position=["lon", "lat"],
     get_color=[255, 0, 0, 200],  # Red markers
-    get_radius=1000,
-    radius_scale=5,
+    get_radius=100000,  # Base radius
+    radius_min_pixels=3,  # Minimum size in pixels when zoomed in
+    radius_max_pixels=30,
     pickable=True
 )
 
