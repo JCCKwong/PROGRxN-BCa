@@ -90,9 +90,40 @@ st.write('')
 
 # Sample hospital data (Replace with your own list)
 hospital_data = [
-    {"name": "Toronto General Hospital", "lat": 43.6583, "lon": -79.3891},
-    {"name": "Mayo Clinic", "lat": 44.0216, "lon": -92.4668},
-    {"name": "Charité - Universitätsmedizin Berlin", "lat": 52.525, "lon": 13.378},
+    {"name": "Princess Margaret Cancer Center, Toronto", "lat": 43.6582, "lon": -79.3906},
+    {"name": "Mount Sinai Hospital, Toronto", "lat": 43.6574, "lon": -79.3903},
+    {"name": "Credit Valley Hospital, Mississauga", "lat": 43.5586, "lon": -79.7033},
+    {"name": "Mississauga Hospital, Mississauga", "lat": 43.5717, "lon": -79.6076},
+    {"name": "MD Anderson Cancer Center, Houston", "lat": 29.7070, "lon": -95.3971},
+    {"name": "Fundacio Puigvert, Universitat Autònoma de Barcelona, Barcelona", "lat": 41.4125, "lon": 2.1728},
+    {"name": "McGill University Health Center, Montreal", "lat": 45.4732, "lon": -73.6009},
+    {"name": "Jules Bordet Institute-Erasme Hospital, Hôpital Universitaire de Bruxelles, Belgium", "lat": 50.8127, "lon": 4.2624},
+    {"name": "Hospital Universitario Fundación Alcorcón, Madrid", "lat": 40.3488, "lon": -3.8374},
+    {"name": "Vancouver General Hospital, Vancouver", "lat": 49.2614, "lon": -123.1222},
+    {"name": "The Ottawa Hospital, Ottawa", "lat": 45.4017, "lon": -75.6495},
+    {"name": "Città della Salute e della Scienza, University of Torino School of Medicine, Torino", "lat": 45.0414, "lon": 7.6743},
+    {"name": "General Teaching Hospital and 1st Faculty of Medicine, Charles University, Prague", "lat": 50.0884, "lon": 14.4037},
+    {"name": "Radboud University Medical Center, Nijmegen", "lat": 51.8234, "lon": 5.8614},
+    {"name": "Centre Hospitalier de l'Université Laval, Quebec City", "lat": 46.7696, "lon": -71.2830},
+    {"name": "Caritas St. Josef Medical Center, Regensburg", "lat": 49.0070, "lon": 12.1188},
+    {"name": "University of Alberta Hospital, Edmonton", "lat": 53.5208, "lon": -113.5232},
+    {"name": "Teaching Hospital Motol and 2nd Faculty of Medicine, Charles University, Prague", "lat": 50.074, "lon": 14.3438},
+    {"name": "Centre Hospitalier de l'Université de Montréal, Montreal", "lat": 45.5116, "lon": -73.5576},
+    {"name": "Fundación Instituto Valenciano de Oncología, Valencia", "lat": 39.4820, "lon": -0.3906},
+    {"name": "Centre Hospitalier de l'Université de Sherbrooke, Sherbrooke", "lat": 45.4478, "lon": -71.8683},
+    {"name": "Medical University of Graz, Graz", "lat": 47.0802, "lon": 15.4696},
+    {"name": "Amsterdam University Medical Center, Vrije Universiteit, Amsterdam", "lat": 52.3346, "lon": 4.8598},
+    {"name": "The Stokes Centre for Urology, Royal Surrey Hospital, Guildford", "lat": 51.2407, "lon": -0.6101},
+    {"name": "Comprehensive Cancer Center, Medical University Vienna, Vienna", "lat": 48.2199, "lon": 16.3506},
+    {"name": "Pitié Salpétrière Hospital, Sorbonne University, Paris", "lat": 48.8371, "lon": 2.3650},
+    {"name": "Queen Elizabeth II Health Sciences Centre, Dalhousie University, Halifax", "lat": 44.6389, "lon": -63.5792},
+    {"name": "Paul Albrechtsen Research Institute CancerCare Manitoba, Winnipeg", "lat": 49.8830, "lon": -97.1260},
+    {"name": "Victoria Hospital, London", "lat": 42.9605, "lon": -81.2252},
+    {"name": "Netherlands Cancer Institute, Antoni van Leeuwenhoek Hospital, Amsterdam", "lat": 52.3495, "lon": 4.8258},
+    {"name": "Royal Free Hospital, London", "lat": 51.5538, "lon": -0.1662},
+    {"name": "Southern Alberta Institute of Urology, Calgary", "lat": 50.9899, "lon": -114.0973},
+    {"name": "Kingston General Hospital, Kingston", "lat": 44.2238, "lon": -76.4943},
+    {"name": "St. Joseph's Healthcare Hamilton, Hamilton", "lat": 43.2488, "lon": -79.8708},
 ]
 
 # Convert to DataFrame
@@ -111,7 +142,7 @@ layer = pdk.Layer(
     data=df,
     get_position=["lon", "lat"],
     get_color=[255, 0, 0, 200],  # Red markers
-    get_radius=50000,
+    get_radius="5000 * (2 ** view_state['zoom'])",
     pickable=True
 )
 
