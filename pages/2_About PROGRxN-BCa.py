@@ -143,9 +143,9 @@ layer = pdk.Layer(
     "ScatterplotLayer",
     data=df,
     get_position=["lon", "lat"],
-    get_color=[255, 0, 0, 200],  # Red markers
-    get_radius=100000,  # Base radius
-    radius_min_pixels=3,  # Minimum size in pixels when zoomed in
+    get_color=[255, 0, 0, 200],
+    get_radius=50000,
+    radius_min_pixels=3,  
     radius_max_pixels=30,
     pickable=True
 )
@@ -154,17 +154,6 @@ tooltip = {"html": "<b>{name}</b>", "style": {"color": "white"}}
 
 # Render Map
 st.pydeck_chart(pdk.Deck(layers=[layer], initial_view_state=view_state, tooltip=tooltip))
-
-#data = pd.DataFrame({
-#    "name": ["Toronto General Hospital", "Credit Valley Hospital", "Mayo Clinic Rochester"],
-#    "lat": [43.6584, 43.5600, 44.0217],
-#    "lon": [-79.3892, -79.7125, -92.4668]
-#})
-
-# Display Map
-#st.map(data)
-#st.image('https://bladdercancercanada.org/wp-content/uploads/2017/03/BCCCentersMap.png',
-#         caption='Canadian Bladder Cancer Information System')
 
 st.header('Funding', divider='gray')
 st.write('')
