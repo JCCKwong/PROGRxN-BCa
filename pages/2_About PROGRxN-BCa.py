@@ -153,7 +153,7 @@ layer = pdk.Layer(
 tooltip = {"html": "<b>{name}</b>", "style": {"color": "white"}}
 
 # Render Map
-st.pydeck_chart(pdk.Deck(layers=[layer], initial_view_state=view_state, tooltip=tooltip))
+st.pydeck_chart(pdk.Deck(layers=[layer], initial_view_state=view_state, map_style='light', tooltip=tooltip))
 
 st.header('Funding', divider='gray')
 st.write('')
