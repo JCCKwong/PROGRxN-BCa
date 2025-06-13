@@ -1,3 +1,8 @@
-# PROGRxN
-Code repository for PROGRxN: Coming soon<br />
-Web application can be accessed [here](https://progrxn-bca-zopotk6q4q-uc.a.run.app).
+# PROGRxN-BCa - PROGression Risk assessment in Non-muscle invasive Bladder Cancer
+This is the code repository for the paper: Development and international evaluation of an artificial intelligence-based model (PROGRxN-BCa) using the WHO 2004/2022 grading system to predict progression risk and improve substratification in non-muscle invasive bladder cancer
+
+PROGRxN-BCa was published in European Urology on July 12th, 2024 ().
+
+PROGRxN-BCa Consortium: Jethro C.C. Kwong, Zizo Al-Daqqaq, Yashan Chelliahpillai, Soomin Lee, Kellie Kim, Maximiliano Ringa, Amna Ali, Andrew Feifer, Katherine Lajkosz, Marian S. Wettstein, Amy Chan, Taeweon Lee, Myky Nguyen, Wassim Kassouf, Peter C. Black, Rodney H. Breau, Michele Lodde, Adrian Fairey, Jean-Baptiste Lattouf, Claudio Jeldres, Ricardo Rendon, Nimira Alimohamed, Neil E. Fleshner, Antonio Finelli, Romain Diamand, Alexandre Peltier, Thierry Roumeguere, Theodorus H. van der Kwast, Joan Palou, Carlos Llorente, Francesco Soria, Otakar Čapoun, Antoine G. van der Heijden, Maximilian Burger, Marko Babjuk, Jose L. Dominguez-Escrig, Richard Zigeuner, Jakko A. Nieuwenhuijzen, A. Hugh Mostafid, Shahrokh F. Shariat, Morgan Rouprêt, Jeffrey Graham, Jonathan Izawa, Laura S. Mertens, Daniel Cohen, Eric Hyndman, D. Robert Siemens, Bobby Shayegan, Paolo Gontero, Richard J. Sylvester, Bas W.G. van Rhijn, Ashish M. Kamat, Alistair E.W. Johnson, Alexandre R. Zlotta, Girish S. Kulkarni
+
+The executable version of the fully trained model can be accessed [here](https://progrxn.ca/). To run the model locally, it can be downloaded from the model folder.
