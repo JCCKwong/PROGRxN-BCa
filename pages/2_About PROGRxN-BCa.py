@@ -15,8 +15,9 @@ st.sidebar.image('https://uofturology.ca/wp-content/themes/uofturology22/img/Uof
 
 st.markdown(
         """
-    **An artificial intelligence-based model to predict progression risk in non-muscle invasive bladder cancer (PROGRxN-BCa) and improve 
-    substratification of intermediate-risk patients: an international model development and evaluation study**\n
+    **Development and international evaluation of an artificial intelligence-based model (PROGRxN-BCa) using the 
+    WHO 2004/2022 grading system to predict progression risk and improve substratification in non-muscle invasive 
+    bladder cancer**\n
 
     *Jethro C.C. Kwong$^{1,2,3}$, Zizo Al-Daqqaq$^{4}$, Yashan Chelliahpillai$^{4}$, Soomin Lee$^{4}$, 
     Kellie Kim$^{4}$, Maximiliano Ringa$^{5}$, Andrew Feifer$^{1,2,5}$, Katherine Lajkosz$^{2}$, 
@@ -56,39 +57,36 @@ st.markdown(
 st.header('Abstract', divider='gray')
 st.markdown(
     """
-    **Background**: Non-muscle invasive bladder cancer (NMIBC) is a heterogenous disease with varying risks of 
-    progression to potentially lethal muscle-invasive disease. Current tools perform poorly, which impacts downstream 
-    management and patient outcomes. To address these limitations, we developed a progression risk assessment tool 
-    using artificial intelligence approaches (PROGRxN-BCa).\n
+    **Background**: Current non-muscle invasive bladder cancer (NMIBC) tools perform suboptimally in predicting 
+    progression risk to potentially lethal muscle-invasive disease. We aimed to improve risk assessment using 
+    artificial intelligence approaches (PROGRxN-BCa).\n
     
     **Methods**: PROGRxN-BCa was trained using 14 clinicopathological features on 3324 NMIBC patients treated from 
-    2005-2022 at four Canadian academic or community hospitals. External testing was performed on 9335 patients 
-    treated from 2005-2023 across 30 North American and European institutions. Primary outcome was time to progression, 
-    defined as development of muscle-invasive or metastatic disease. PROGRxN-BCa was compared to the guideline-endorsed 
-    European Association of Urology (EAU) risk calculator. Performance for predicting five-year progression risk was 
-    characterized using concordance index, calibration plots, instability assessments, decision curve analysis, and an 
-    algorithmic audit.\n
+    2005-2022 at four Canadian institutions. External testing was performed on 9335 patients treated from 2005-2023 
+    across 30 North American and European institutions. Primary outcome was time-to-progression (muscle-invasive 
+    or metastatic disease). PROGRxN-BCa was compared to the European Association of Urology (EAU) risk calculator. 
+    Performance was characterized using c-index, calibration plots, instability assessments, decision curve 
+    analysis, and an algorithmic audit.\n
     
-    **Findings**: Among 12659 patients, 1405 (11%) progressed over a median follow-up of 3.3 years (IQR 1.6-5.8). 
-    PROGRxN-BCa had significantly higher concordance index and net benefit overall and across different subgroups 
+    **Findings**: During a median follow-up of 3.3 years (IQR 1.6-5.8), 1405 of 12659 patients progressed. 
+    PROGRxN-BCa had significantly higher c-index and net benefit overall and across different subgroups 
     (training: 0.83, 95% CI 0.81-0.84; testing: 0.79, 95% CI 0.77-0.80) compared to the EAU risk calculator 
-    (training 0.76, 95% CI 0.74-0.78; testing 0.71, 95% CI 0.70-0.72). This improvement was consistent among patients 
-    who received guideline-concordant or non-guideline concordant care. Furthermore, it outperformed other 
-    guideline-endorsed tools and a previously published AI model using the World Health Organization 1973 grade. 
-    Compared to current guideline recommendations, PROGRxN-BCa improved substratification of intermediate-risk 
-    patients into distinct risk tertiles with five-year progression risks of 2, 7, and 17% - including 9% of patients 
-    in the highest risk tertile who may otherwise not be considered for treatment intensification.\n
+    (training 0.76, 95% CI 0.74-0.78; testing 0.71, 95% CI 0.70-0.73). This improvement was consistent regardless 
+    of BCG treatment, adherence to guideline-concordant care, World Health Organization 1973 or 2004/2022 grading 
+    system, and among patients with at least five years of follow-up. It also outperformed other guideline-endorsed 
+    tools and previously published AI model. Compared to guideline recommendations, PROGRxN-BCa improved 
+    substratification of intermediate-risk patients into distinct risk tertiles with estimated five-year 
+    progression risks of 2, 7, and 17% – the latter in line with high-risk NMIBC.\n
     
-    **Interpretation**: PROGRxN-BCa outperformed current tools and improved substratification, especially in the 
-    heterogenous intermediate-risk group, in the largest NMIBC cohort of its kind. PROGRxN-BCa may better inform 
-    risk adapted management for current NMIBC guidelines.
+    **Conclusion**: PROGRxN-BCa outperformed current tools in the largest NMIBC cohort of its kind, improving 
+    substratification and potentially optimizing risk-adapted management for guidelines.
     """
 )
 
 st.header('Contributing Institutions', divider='gray')
 st.write('')
 
-# Sample hospital data (Replace with your own list)
+# Hospital data
 hospital_data = [
     {"name": "Princess Margaret Cancer Center, Toronto", "lat": 43.6582, "lon": -79.3906},
     {"name": "Mount Sinai Hospital, Toronto", "lat": 43.6574, "lon": -79.3903},
