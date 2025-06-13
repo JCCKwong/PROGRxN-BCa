@@ -146,5 +146,5 @@ if uploaded_file is not None:
 
 # Step 4: Validate PROGRxN-BCa on the uploaded database
 st.header("Step 4", divider="gray")
-st.markdown("Once the data quality check is complete, please reach out to the [PROGRxN-BCa study team] 
+st.markdown("Once the data quality check is complete, please reach out to the [PROGRxN-BCa study team]"
             "(mailto:jethro.kwong@mail.utoronto.ca) if you are interested in validating PROGRxN-BCa on your data.")
