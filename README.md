@@ -1,5 +1,5 @@
 # PROGRxN-BCa - PROGression Risk assessment in Non-muscle invasive Bladder Cancer
-This is the code repository for the paper: Development and international evaluation of an artificial intelligence-based model (PROGRxN-BCa) using the WHO 2004/2022 grading system to predict progression risk and improve substratification in non-muscle invasive bladder cancer
+This is the code repository for the paper: *Development and international evaluation of an artificial intelligence-based model (PROGRxN-BCa) using the WHO 2004/2022 grading system to predict progression risk and improve substratification in non-muscle invasive bladder cancer*
 
 PROGRxN-BCa was published in European Urology on July 12th, 2024 ().
 
