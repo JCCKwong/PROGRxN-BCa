@@ -18,43 +18,6 @@ st.title("Validate PROGRxN-BCa (for researchers)")
 st.sidebar.image('https://uofturology.ca/wp-content/themes/uofturology22/img/UofT-Urology-logo@2x.png',
                  use_column_width=True)
 
-def check_password():
-    """Returns `True` if the user had the correct password."""
-
-    def password_entered():
-        """Checks whether a password entered by the user is correct."""
-        # Hardcoded password
-        correct_password = "UofTUrology"
-        if hmac.compare_digest(st.session_state["password"], correct_password):
-            st.session_state["password_correct"] = True
-            del st.session_state["password"]  # Don't store the password.
-        else:
-            st.session_state["password_correct"] = False
-
-    # Return True if the password is validated.
-    if st.session_state.get("password_correct", False):
-        return True
-
-    # Show input for password.
-    st.text_input(
-        "Password", type="password", on_change=password_entered, key="password"
-    )
-    if "password_correct" in st.session_state and not st.session_state["password_correct"]:
-        st.error("😕 Password incorrect")
-    return False
-
-
-if not check_password():
-    st.stop()  # Do not continue if check_password is not True.
-
-
-@st.cache_data()
-def load_model():
-    model = joblib.load(r'model/model.gz')
-    return model
-
-model = load_model()
-
 # Step 1: Download database template
 st.header("Step 1", divider="gray")
 st.markdown("Download the database template (CSV file) and review the data dictionary below.")
@@ -173,45 +136,21 @@ if uploaded_file is not None:
 
         status.update(label="Data upload and quality check complete!", state="complete", expanded=False)
 
-    # Step 4: Validate PROGRxN-BCa on the uploaded database
-    st.header("Step 4", divider="gray")
-    st.markdown("Validate PROGRxN-BCa with your data. Note this may take a while depending on the size of your "
-                "database.")
-    validate = st.button("Validate!")
-    if validate:
-        st.write(f"This validation cohort includes **{len(selected_df)} patients** with "
+    st.write(f"This validation cohort includes **{len(selected_df)} patients** with "
                  f"**{selected_df['Progression'].sum()} progression events "
                  f"({((selected_df['Progression'].sum()/len(selected_df))*100).round()}%)** during a median follow-up "
                  f"of **{round(np.median(selected_df[selected_df['Progression']==0]['Time']), 1)} years**.")
-        if (len(selected_df) >= 1956) and (selected_df['Progression'].sum() >= 382):
-            st.write(":white_check_mark: Validation cohort is adequately powered")
-        else:
-            st.write(f":warning: This validation cohort is **not sufficiently powered**, therefore **please interpret "
-                     f"the performance metrics with caution**. A minimum sample size of 1956 patients with 382 "
-                     f"progression events is required, assuming a shrinkage of 0.9, 14 features in PROGRxN-BCa, "
-                     f"prediction timepoint of 5 years, and a 5% progression rate during a median follow-up of 3.9 "
-                     f"years from the European Association of Urology (EAU) Prognostic Risk Group study "
-                     "(https://doi.org/10.1016/j.eururo.2020.12.033).")
+    if (len(selected_df) >= 1956) and (selected_df['Progression'].sum() >= 382):
+        st.write(":white_check_mark: Validation cohort is adequately powered")
+    else:
+        st.write(f":warning: This validation cohort is **not sufficiently powered**, therefore **please interpret "
+                 f"the performance metrics with caution**. A minimum sample size of 1956 patients with 382 "
+                 f"progression events is required, assuming a shrinkage of 0.9, 14 features in PROGRxN-BCa, "
+                 f"prediction timepoint of 5 years, and a 5% progression rate during a median follow-up of 3.9 "
+                 f"years from the European Association of Urology (EAU) Prognostic Risk Group study "
+                 "(https://doi.org/10.1016/j.eururo.2020.12.033).")
 
-        # Determine c-index
-        progress_bar = st.progress(0, text="Calculating c-index, please wait :hourglass_flowing_sand:...")
-        selected_df_y = util.Surv.from_arrays(selected_df['Progression'],
-                                              selected_df['Time'],
-                                              name_event='Progression',
-                                              name_time='Time')
-        selected_df = selected_df.drop(columns=['ID', 'Progression', 'Time'])
-        c_index_main, c_index_ci_lower, c_index_ci_upper = metrics.c_index(selected_df, selected_df_y, model)
-
-        # Determine calibration and net benefit
-        progress_bar.progress(50, text="Generating calibration and net benefit plot, please wait "
-                                       ":hourglass_flowing_sand:...")
-        cal_dca_fig = metrics.calibration_dca(selected_df, selected_df_y, model)
-        progress_bar.progress(100, text="Completing validation, please wait :hourglass_flowing_sand:...")
-        progress_bar.empty()
-
-        # Display results
-        st.write(f"PROGRxN-BCa achieved a **c-index of {c_index_main} (95% CI {c_index_ci_lower}-{c_index_ci_upper})**"
-                 f" on your uploaded database. For comparison, PROGRxN-BCa achieved a c-index of 0.83 "
-                 f"(95% CI 0.81-0.84) on the original training cohort (n=3324), and 0.76 (95% CI 0.74-0.77) on the "
-                 f"original external validation cohort (n=3708).")
-        st.pyplot(cal_dca_fig, use_container_width=True)
+# Step 4: Validate PROGRxN-BCa on the uploaded database
+st.header("Step 4", divider="gray")
+st.markdown("Once the data quality check is complete, please reach out to the [PROGRxN-BCa study team] 
+            "(mailto:jethro.kwong@mail.utoronto.ca) if you are interested in validating PROGRxN-BCa on your data.")
