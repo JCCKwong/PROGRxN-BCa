@@ -1,6 +1,7 @@
 """
-Title: Development and external validation of an artificial intelligence-based model to predict 5-year progression risk
-in non-muscle invasive bladder cancer (PROGRxN-BCa): a retrospective, international, multicentre study.
+Title: Development and international evaluation of an artificial intelligence-based model (PROGRxN-BCa) using the 
+WHO 2004/2022 grading system to predict progression risk and improve substratification in non-muscle invasive 
+bladder cancer
 """
 
 # Import packages and libraries
