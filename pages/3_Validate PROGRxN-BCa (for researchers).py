@@ -1,12 +1,6 @@
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
 import streamlit as st
-import hmac
-import joblib
-from sksurv.ensemble import RandomSurvivalForest
-from sksurv import util
-from utils import metrics
 
 st.set_page_config(page_title="PROGRxN-BCa: PROGression Risk assessment in Non-muscle invasive Bladder Cancer",
                    page_icon="https://bladdercancercanada.org/wp-content/uploads/2017/03/bcc-fav-icon.png",
