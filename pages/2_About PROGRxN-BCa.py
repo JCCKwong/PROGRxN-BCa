@@ -51,7 +51,7 @@ st.markdown(
     1. Division of Biostatistics, Dalla Lana School of Public Health, University of Toronto, Toronto, Canada
     1. Vector Institute, Toronto, Canada
 
-    For more information, the full manuscript is available [here](#).
+    For more information, the full manuscript is available [here](https://doi.org/10.1016/j.eururo.2025.09.4145).
     """)
 
 st.header('Abstract', divider='gray')
@@ -161,4 +161,5 @@ col1.image('https://lh3.googleusercontent.com/p/AF1QipMcP_iOErUmGpGCsxGVZWFN3rMn
            caption='CUASF Bladder Cancer Canada Research Grant')
 col1.image('https://pbs.twimg.com/profile_images/1324121822263185409/XujIy-bC_400x400.jpg',
            caption='Temerty Innovation Grant')
+
 
