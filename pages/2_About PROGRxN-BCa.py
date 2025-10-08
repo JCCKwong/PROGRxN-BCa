@@ -57,29 +57,30 @@ st.markdown(
 st.header('Abstract', divider='gray')
 st.markdown(
     """
-    **Background**: Current non-muscle invasive bladder cancer (NMIBC) tools perform suboptimally in predicting 
+    **Background**: Current non–muscle-invasive bladder cancer (NMIBC) tools perform suboptimally in predicting 
     progression risk to potentially lethal muscle-invasive disease. We aimed to improve risk assessment using 
-    artificial intelligence approaches (PROGRxN-BCa).\n
+    artificial intelligence approaches (PROGression Risk assessment in NMIBC [PROGRxN-BCa]).\n
     
-    **Methods**: PROGRxN-BCa was trained using 14 clinicopathological features on 3324 NMIBC patients treated from 
-    2005-2022 at four Canadian institutions. External testing was performed on 9335 patients treated from 2005-2023 
-    across 30 North American and European institutions. Primary outcome was time-to-progression (muscle-invasive 
-    or metastatic disease). PROGRxN-BCa was compared to the European Association of Urology (EAU) risk calculator. 
-    Performance was characterized using c-index, calibration plots, instability assessments, decision curve 
-    analysis, and an algorithmic audit.\n
+    **Methods**: PROGRxN-BCa was trained using 14 clinicopathological features on 3324 NMIBC patients treated 
+    from 2005 to 2022 at four Canadian institutions. External testing was performed on 9335 patients treated 
+    from 2005 to 2023 across 30 North American and European institutions. The primary outcome was time to 
+    progression (muscle-invasive or metastatic disease). PROGRxN-BCa was compared with the European Association 
+    of Urology (EAU) risk calculator. Performance was characterised using concordance index (c-index), 
+    calibration plots, instability assessments, decision curve analysis, and an algorithmic audit.\n
     
-    **Findings**: During a median follow-up of 3.3 years (IQR 1.6-5.8), 1405 of 12659 patients progressed. 
-    PROGRxN-BCa had significantly higher c-index and net benefit overall and across different subgroups 
-    (training: 0.83, 95% CI 0.81-0.84; testing: 0.79, 95% CI 0.77-0.80) compared to the EAU risk calculator 
-    (training 0.76, 95% CI 0.74-0.78; testing 0.71, 95% CI 0.70-0.73). This improvement was consistent regardless 
-    of BCG treatment, adherence to guideline-concordant care, World Health Organization 1973 or 2004/2022 grading 
-    system, and among patients with at least five years of follow-up. It also outperformed other guideline-endorsed 
-    tools and previously published AI model. Compared to guideline recommendations, PROGRxN-BCa improved 
-    substratification of intermediate-risk patients into distinct risk tertiles with estimated five-year 
-    progression risks of 2, 7, and 17% – the latter in line with high-risk NMIBC.\n
+    **Findings**: During a median follow-up of 3.3 yr (interquartile range 1.6–5.8), 1405 of 12659 patients 
+    progressed. In the external testing cohort, PROGRxN-BCa had significantly higher c-index (0.79, 95% 
+    confidence interval [CI] 0.77–0.80) and net benefit overall and across different subgroups compared with 
+    the EAU risk calculator (0.71, 95% CI 0.70–0.73, p < 0.001). This improvement was consistent regardless 
+    of treatment with bacillus Calmette-Guérin, adherence to guideline-concordant care, and World Health 
+    Organization 1973 or 2004/2022 grading system, and was consistent among patients with at least 5 yr of 
+    follow-up. It also outperformed other guideline-endorsed tools and a previously published artificial 
+    intelligence model. Compared with guideline recommendations, PROGRxN-BCa improved substratification of 
+    intermediate-risk patients into distinct risk tertiles, with estimated 5-yr progression risks of 2%, 7%, 
+    and 15%—the latter in line with high-risk NMIBC.\n
     
-    **Conclusion**: PROGRxN-BCa outperformed current tools in the largest NMIBC cohort of its kind, improving 
-    substratification and potentially optimizing risk-adapted management for guidelines.
+    **Conclusion**: PROGRxN-BCa outperformed current tools in the largest NMIBC cohort of its kind. Its 
+    integration into guidelines could improve risk stratification and patient management.
     """
 )
 
@@ -160,3 +161,4 @@ col1.image('https://lh3.googleusercontent.com/p/AF1QipMcP_iOErUmGpGCsxGVZWFN3rMn
            caption='CUASF Bladder Cancer Canada Research Grant')
 col1.image('https://pbs.twimg.com/profile_images/1324121822263185409/XujIy-bC_400x400.jpg',
            caption='Temerty Innovation Grant')
+
